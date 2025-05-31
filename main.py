@@ -19,7 +19,7 @@ async def webhook(request: Request):
     email       = data.get('email')
     whatsapp    = data.get('whatsapp')
     necessidade = data.get('necessidade')    
-    ramo        = data.get('ramo)   # <- novo campo que vem da Zaia
+    ramo        = data.get('ramo')   # <- novo campo que vem da Zaia
 
     if not all([nome, email, whatsapp]):
         return {"error": "Nome, email ou WhatsApp faltando."}
