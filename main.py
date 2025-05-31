@@ -18,7 +18,8 @@ async def webhook(request: Request):
     nome        = data.get('nome')
     email       = data.get('email')
     whatsapp    = data.get('whatsapp')
-    necessidade = data.get('necessidade')          # <- novo campo que vem da Zaia
+    necessidade = data.get('necessidade')    
+    ramo        = data.get('ramo)   # <- novo campo que vem da Zaia
 
     if not all([nome, email, whatsapp]):
         return {"error": "Nome, email ou WhatsApp faltando."}
@@ -46,6 +47,10 @@ async def webhook(request: Request):
             "Necessidade": {                      # <- nova propriedade no Notion
                 "rich_text": [
                     { "text": { "content": necessidade or "" } }
+                     },
+            "Ramo": {                      # <- nova propriedade no Notion
+                "rich_text": [
+                    { "text": { "content": ramo or "" } }
                 ]
             }
         }
