@@ -31,30 +31,31 @@ async def webhook(request: Request):
     }
 
     payload = {
-        "parent": { "database_id": NOTION_DATABASE_ID },
-        "properties": {
-            "Nome": {
-                "title": [
-                    { "text": { "content": nome } }
-                ]
-            },
-            "Email": { "email": email },
-            "WhatsApp": {
-                "rich_text": [
-                    { "text": { "content": whatsapp } }
-                ]
-            },
-            "Necessidade": {                      # <- nova propriedade no Notion
-                "rich_text": [
-                    { "text": { "content": necessidade or "" } }
-                     },
-            "Ramo": {                      # <- nova propriedade no Notion
-                "rich_text": [
-                    { "text": { "content": ramo or "" } }
-                ]
-            }
+    "parent": { "database_id": NOTION_DATABASE_ID },
+    "properties": {
+        "Nome": {
+            "title": [
+                { "text": { "content": nome } }
+            ]
+        },
+        "Email": { "email": email },
+        "WhatsApp": {
+            "rich_text": [
+                { "text": { "content": whatsapp } }
+            ]
+        },
+        "Necessidade": {
+            "rich_text": [
+                { "text": { "content": necessidade or "" } }
+            ]
+        },                          # vírgula depois de fechar o dicionário
+        "Ramo": {
+            "rich_text": [
+                { "text": { "content": ramo or "" } }
+            ]
         }
     }
+}
 
     response = requests.post(NOTION_API_URL, headers=headers, json=payload)
 
